@@ -1,82 +1,82 @@
 -----------------------
-Maths Tutor Console App
+# Maths Tutor Console App
 -----------------------
 
-Item by item requirements
+## Item by item requirements
+
+- Presents a welcome message when application starts:
+    - Message inbuilt into the Main Menu method
+
+ - Presents a goodbye message when the application quits
+   - Message inbuilt into the Quit method
+   - Application presents a main menu to users:
+   - Main menu has the following:
+      ```
+         TITLE
+
+         1) Instructions
+         2) Deal 3 cards
+         3) Deal 5 cards
+         4) Show leaderboard
+         5) Quit
+      ```
+
+   - Instructions show how the game works, to by typed out later
+   - Deal 3/5 cards deals 2 numbers + an operator in order,
+      or 3 numbers + 2 operators in order
+      - User is prompted to give the answer
+      - If the answer is correct, then the user is told
+      - If the user is incorrect, the user is also told
+      - The choice to deal again or return to the menu is shown
+   - Quitting runs the Quit method
+
+ - Single Shuffle algorithm of your choide
+   - Shuffle algorithm moved from A01 and improved
+
+ - Each class should be a seperate file
+   - Class names listed below
+
+ - Card, Pack, and Tutorial classes should be presents
+   - Class names listed below
+
+ - Errors should be handled
+   - Error handling sorted out, maybe in an error_handling class?
+
+ - OOP aspects
+   - Instantiate objects
+   - Encapsulation
+   - Inherritance
+   - Polymorphism
+   - Interfaces
+
+ - Application should be tested
+   - Testing class required
+
+ - Statistics stored in .txt file
+   - PLACEHOLDER
+
+ - Exception handling should be used
+   - PLACEHOLDER
 
 
-Presents a welcome message when application starts
- - Message inbuilt into the Main Menu method
+## Class structure:
 
-Presents a goodbye message when the application quits
- - Message inbuilt into the Quit method
-
-Application presents a main menu to users:
- - Main menu has the following:
-    TITLE
-
-    1) Instructions
-    2) Deal 3 cards
-    3) Deal 5 cards
-    4) Show leaderboard
-    5) Quit
-
- - Instructions show how the game works, to by typed out later
- - Deal 3/5 cards deals 2 numbers + an operator in order,
-   or 3 numbers + 2 operators in order
-    - User is prompted to give the answer
-    - If the answer is correct, then the user is told
-    - If the user is incorrect, the user is also told
-    - The choice to deal again or return to the menu is shown
- - Quitting runs the Quit method
-
-Single Shuffle algorithm of your choide
- - Shuffle algorithm moved from A01 and improved
-
-Each class should be a seperate file
- - Class names listed below
-
-Card, Pack, and Tutorial classes should be presents
- - Class names listed below
-
-Errors should be handled
- - Error handling sorted out, maybe in an error_handling class?
-
-OOP aspects
- - Instantiate objects
- - Encapsulation
- - Inherritance
- - Polymorphism
- - Interfaces
-
-Application should be tested
- - Testing class required
-
-Statistics stored in .txt file
- - PLACEHOLDER
-
-Exception handling should be used
- - PLACEHOLDER
-
-
-Class structure:
-
-Program.cs
+### Program.cs
  - Runs the main menu or the testing class
 
-Menus.cs
+### Menus.cs
  - Responsible for storing menu strings & handling
    user input
  - MainMenu
  - parseInput():
     - Parses user input returning an int number choice
 
-Pack.cs
+### Pack.cs
  - Creates card pack
  - Shuffles card pack
  - DealCard (x)
 
-Card.cs
+### Card.cs
  - Creates card
  - Also contains card interface:
     - getValue: Shows value the card:
@@ -95,18 +95,18 @@ Card.cs
       ```
  - Each card is drawn this way
 
-NumberCard.cs
+### NumberCard.cs
  - Inherrits from Card
  - getValue returns only number
 
-OperatorCard.cs
+### OperatorCard.cs
  - Inherrits from Card
  - OperatorCard contains the operator based on the suit enum
  - Contains a drawCard override:
     - Instead of drawing the card, The operator is placed in
       the middle of where a card would be (5x7 matrix)
 
-MathsTutor.cs - To be renamed
+### MathsTutor.cs - To be renamed
  - Handles all aspects of MathsTutor
  - This is the main class. The game is run using the run() method
  - Responsible for the following:
@@ -133,7 +133,7 @@ MathsTutor.cs - To be renamed
    drawCards(List<Card>):
       - Draws all cards, combining them into a X by 7 grid
 
-Calculation.cs
+### Calculation.cs
  - Responsible for BIDMAS maths operations
    (It's BIDMAS, not BODMAS. Checkmate American'ts)
  - Methods:
@@ -144,7 +144,7 @@ Calculation.cs
               and right of the operator, sorts that using DMAS, then calculates,
               then replaces the left and right with the final value?
 
-ScoreBoard.cs
+### ScoreBoard.cs
  - Responsible for creating a leaderboard
  - Methods:
       - drawBoard():
@@ -152,8 +152,8 @@ ScoreBoard.cs
          - Reads from scoreboard.txt, with appropriate error handling
            for empty files etc
 
-Tests.cs:
+### Tests.cs:
  - PLACEHOLDER
 
-ErrorHandling.cs
+### ErrorHandling.cs
  - Handles errors
