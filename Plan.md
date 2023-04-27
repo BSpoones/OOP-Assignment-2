@@ -9,7 +9,8 @@
 
  - Presents a goodbye message when the application quits
    - Message inbuilt into the Quit method
-   - Application presents a main menu to users:
+
+- Application presents a main menu to users:
    - Main menu has the following:
       ```
          TITLE
@@ -86,7 +87,7 @@
     format: 2 and the 4 operators
  - drawCard (VIRTUAL): Draws an ASCII card in the following:
       ```
-         _____           
+          _____           
          |2    |
          |  ♣  | 
          |     |
@@ -153,7 +154,4 @@
            for empty files etc
 
 ### Tests.cs:
- - PLACEHOLDER
-
-### ErrorHandling.cs
- - Handles errors
+ - Testing class responsible for the following tests:
