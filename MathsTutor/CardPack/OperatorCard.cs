@@ -6,7 +6,21 @@ using System.Threading.Tasks;
 
 namespace MathsTutor
 {
-    internal class OperatorCard
+
+    public class OperatorCard : Card
     {
+        public OperatorCard(SuitType suit, int value) : base(suit, value)
+        {
+        }
+
+        public override void DrawCard()
+        {
+
+        }
+
+        public override int GetValue()
+        {
+            return (int)Suit;
+        }
     }
 }
