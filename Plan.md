@@ -75,7 +75,10 @@
 ### Pack.cs
  - Creates card pack
  - Shuffles card pack
- - DealCard (x)
+ - DealCard (x):
+      - Unlike the previous version, DealCard takes an odd int (x)
+        and creates a list of alternating types: NumberCard and OperatorCard
+        this can be 3, 5, or any amount.
 
 ### Card.cs
  - Creates card
@@ -93,6 +96,8 @@
          |     |
          |  ♣  | 
          |____2| 
+
+         
       ```
  - Each card is drawn this way
 
