@@ -1,66 +1,31 @@
-﻿using CMP1903M_A01_2223;
-
-
+﻿
 namespace MathsTutor
 {
-    public class Pack
     /*
      * Pack class
      * 
      * This class contains functions to create a card pack,
      * as well as shuffle and deal cards.
      */
+    public class Pack
+    
     {
+        // Creates and shuffles card pack when instantiating object
         public List<Card> cardPack;
 
         public Pack() {
-            cardPack = makePack();
+            cardPack = MakePack();
             ShuffleCardPack();
         }
         
 
-        public void ShuffleCardPack(int shuffleType = 1)
+        public void ShuffleCardPack()
         /*
         * Shuffles the card pack using the chosen shuffle method.
-        * Uses the 3 available shuffle methods:
         * - Fisher-Yates shuffle (https://en.wikipedia.org/wiki/Fisher–Yates_shuffle)
-        * - Riffle shuffle (https://www.youtube.com/watch?v=o-KBNdbJOGk)
-        * - No shuffle
         */
         {
-            ShuffleType shuffle = GetShuffleType(shuffleType);
-            switch (shuffle)
-            {
-                case ShuffleType.Fisheryates:
-                    Shuffle.FisherShuffle(ref this.cardPack);
-                    break;
-                case ShuffleType.Riffle:
-                    Shuffle.RiffleShuffle(ref cardPack);
-                    break;
-                case ShuffleType.None:
-                    Shuffle.noShuffle(ref cardPack);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException($"{shuffle} is an invalid input");
-            }
-        }
-        private static ShuffleType GetShuffleType(int shuffleType)
-        /*
-         * Converts an integer shuffle type to an enum value
-         * from ShuffleType
-         */
-        {
-            switch (shuffleType)
-            {
-                case 1:
-                    return ShuffleType.Fisheryates;
-                case 2:
-                    return ShuffleType.Riffle;
-                case 3:
-                    return ShuffleType.None;
-                default:
-                    throw new ArgumentOutOfRangeException("Invalid shuffle type");
-            }
+            Shuffle.FisherShuffle(ref cardPack); // SPEC: Shuffle algorithm of your choice
         }
 
         public Card Deal()
@@ -78,24 +43,52 @@ namespace MathsTutor
             cardPack.Remove(dealtCard);
             return dealtCard;
         }
-        public List<Card> dealCard(int amount)
-        {
-            //Deals the number of cards specified by 'amount'
 
-            // Getting the cards
-            // NOTE: Error handling not required as the smallest value between amount and card count is used
-            List<Card> dealtCards = cardPack.GetRange(0, Math.Min(amount, cardPack.Count()));
-            cardPack.RemoveRange(0, Math.Min(amount, cardPack.Count()));
-            return dealtCards;
+        /*
+         * As opposed to the original design, this method retrieves a random `amount` of cards
+         * from the pack. Instead of deleting them, they are kept in the pack to ensure infinite
+         * gameplay.
+         * 
+         * To get x random cards, the pack is shuffled and the first x cards are taken from the
+         * start of the pack, it then converts them to NumberCard and OperatorCard respectively
+         */
+        public List<Card> DealCard(int amount)
+        {
+            // SPEC: Deal 3 cards, Deal 5 cards
+
+            // Ensuring correct value
+            if (amount %2 == 0 && amount >= 3 && amount <= 51) // && is used instead of & for short circuiting purposes
+            {
+                throw new ArgumentException($"{amount} must be an odd integer between 3 and 51");
+            }
+
+            ShuffleCardPack(); // Shuffling ensures a random card set each time
+            List<Card> dealtCards = cardPack.GetRange(0, Math.Min(amount, cardPack.Count));
+            List<Card> gameCards = new();
+            for (int i = 0; i < dealtCards.Count; i++)
+            {
+                Card card = dealtCards[i];
+                if (i % 2 == 0) // Even card - NumberCard (since it starts at 0)
+                {
+                    gameCards.Add(new NumberCard(card.Suit, card.Value));
+                }
+                else
+                {
+                    gameCards.Add(new OperatorCard(card.Suit, card.Value));
+                }
+            }
+
+            return gameCards;
         }
 
-        public List<Card> makePack()
+        public static List<Card> MakePack()
         {
             /*
              * Creates a list of 52 card objects
              */
-            List<Card> cardPack = new List<Card>();
-            // Creating an unsorted card pack
+
+            List<Card> cardPack = new();
+            // Creating an unshuffled card pack
             foreach (Card.SuitType suit in Enum.GetValues(typeof(Card.SuitType)))
             {
                 // Each card suit

@@ -1,26 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathsTutor
+﻿namespace MathsTutor
 {
-
-    public class NumberCard : Card
+    /*
+     * NumberCard subclass
+     * 
+     * Used for all Number cards
+     */
+    public class NumberCard : Card // SPEC: Inheritance
     {
-        public NumberCard(SuitType suit, int value) : base(suit, value)
+        public NumberCard(SuitType suit, double value) : base(suit, value)
         {
         }
 
-        public override void DrawCard()
+        /*
+         * GetValue override
+         * 
+         * Only returning the number part of the object
+         */
+        public override double GetValue()
         {
-
+            return Value; // 1-13
         }
 
-        public override int GetValue()
+        /*
+         * ToString override
+         * 
+         * Only showing the value, not the suit
+         */
+        public override string ToString()
         {
-            return Value; // 1-4, corresponding to +-*/
+            return Value.ToString();
         }
     }
 }

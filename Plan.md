@@ -2,6 +2,8 @@
 # Maths Tutor Console App
 -----------------------
 
+# NOTE: THIS PLAN MAY NOT BE THE SAME AS THE FINAL PRODUCT
+
 ## Item by item requirements
 
 - Presents a welcome message when application starts:

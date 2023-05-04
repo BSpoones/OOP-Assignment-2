@@ -1,14 +1,8 @@
-using MathsTutor;
-using System;
-using System.Collections.Generic;
-
-namespace CMP1903M_A01_2223
+namespace MathsTutor
 {
     public enum ShuffleType
     {
         Fisheryates = 1,
-        Riffle,
-        None
     }
     public class Shuffle
     /*
@@ -17,8 +11,6 @@ namespace CMP1903M_A01_2223
      * Contains enum to convert shuffle type to int
      */
     {
-        
-
         public static void FisherShuffle(ref List<Card> cards)
         {
             /*
@@ -40,40 +32,6 @@ namespace CMP1903M_A01_2223
                 // Swapping the cards around
                 (cards[j], cards[i]) = (cards[i], cards[j]);
             }
-        }
-
-        public static void RiffleShuffle(ref List<Card> cards)
-        {
-            // Riffle shuffle works by splitting a deck in two, then
-            // combining them one at a time from each half
-
-            // Ensuring that a 52 card deck is used
-            if (cards.Count != 52)
-            {
-                throw new ArgumentOutOfRangeException("Invalid deck length");
-            }
-
-            // Splitting deck in two
-            // No rounding required as it's forced to be an even number (52)
-            int halfway = cards.Count / 2;
-
-            // Splitting the deck in two
-            List<Card> leftHalf = cards.GetRange(0, halfway);
-            List<Card> rightHalf = cards.GetRange(halfway, cards.Count - halfway);
-
-            // Combining the half-decks
-            List<Card> shuffledCards = new List<Card>();
-            for (int i = 0; i < halfway; i++)
-            {
-                shuffledCards.Add(leftHalf[i]);
-                shuffledCards.Add(rightHalf[i]);
-            }
-            cards = shuffledCards;
-        }
-        public static void noShuffle(ref List<Card> cards)
-        {
-            // noShuffle method returns the cards exactly as they
-            // were given
         }
     }
 }
