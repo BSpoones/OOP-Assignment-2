@@ -2,6 +2,9 @@
 # Maths Tutor Console App
 -----------------------
 
+Made by BSpoones
+April 2023 - May 2023
+
 # NOTE: THIS PLAN MAY NOT BE THE SAME AS THE FINAL PRODUCT
 
 ## Item by item requirements
